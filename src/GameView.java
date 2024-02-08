@@ -25,5 +25,8 @@ public class GameView extends JFrame {
             g.fillRect(600, 1000, 600, 1000);
             g.drawImage(backgrounds[0], 600, 1000, this);
         }
+        //if(currentState.equals("We're playing!") {
+
+        //}
     }
 }
