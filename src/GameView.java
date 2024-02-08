@@ -7,10 +7,10 @@ public class GameView extends JFrame {
     private static final int WINDOW_WIDTH = 1000;
     private Image[] diceImages;
     private Image[] backgrounds;
-    private Game g;
+    private Game theGame;
     private String currentState;
 
-    public GameView(Game g) {
+    public GameView(Game theGame) {
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setTitle("Dice Game!");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,8 +25,7 @@ public class GameView extends JFrame {
             g.fillRect(600, 1000, 600, 1000);
             g.drawImage(backgrounds[0], 600, 1000, this);
         }
-        //if(currentState.equals("We're playing!") {
-
-        //}
+        if(currentState.equals("We're playing!") {
+        }
     }
 }
