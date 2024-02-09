@@ -7,6 +7,7 @@ public class Game {
     private String player1;
     private String player2;
     private boolean currentPlayer;
+    private String currentState;
 
     public Game() {
         d1 = new Die();
@@ -16,6 +17,7 @@ public class Game {
     }
 
     public void rules() {
+        currentState = "Intro";
         System.out.println("Here's how you play: \n");
         System.out.println("The computer will ask you to guess a number on a die with the\n" +
                 "number of sides of your choosing. Then, it will roll the die. \nIf the " +
@@ -30,9 +32,10 @@ public class Game {
     }
 
     public void basicGame() {
+        currentState = "We're playing!";
         while (points1 < 30 && points2 < 30) {
             Scanner input = new Scanner(System.in);
-            if (currentPlayer == true) {
+            if (currentPlayer) {
                 System.out.println("Hi " + player1 + "! What is the lowest number this roll will be? ");
                 int guess = input.nextInt();
                 invalid(guess);
@@ -45,7 +48,7 @@ public class Game {
                 }
                 printPoints(points1);
                 currentPlayer = false;
-            } else if (currentPlayer == false) {
+            } else if (!currentPlayer) {
                 System.out.println("Hi " + player2 + " What is the lowest number this roll will be? ");
                 int guess = input.nextInt();
                 invalid(guess);

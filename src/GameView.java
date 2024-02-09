@@ -8,24 +8,32 @@ public class GameView extends JFrame {
     private Image[] diceImages;
     private Image[] backgrounds;
     private Game theGame;
-    private String currentState;
 
     public GameView(Game theGame) {
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setTitle("Dice Game!");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.currentState = "Intro";
+        backgrounds = new Image[3];
         backgrounds[0] = new ImageIcon("Resources/Intro_SS.png").getImage();
+        backgrounds[1] = new ImageIcon("Resources/playingBackground.png").getImage();
+        diceImages = new Image[6];
+        diceImages[0] = new ImageIcon("Resources/Dice1.png").getImage();
+        diceImages[1] = new ImageIcon("Resources/Dice2.png").getImage();
+        diceImages[2] = new ImageIcon("Resources/Dice3.png").getImage();
+        diceImages[3] = new ImageIcon("Resources/Dice4.png").getImage();
+        diceImages[4] = new ImageIcon("Resources/Dice5.png").getImage();
+        diceImages[5] = new ImageIcon("Resources/Dice6.png").getImage();
     }
 
-    public void paint(Graphics g) {
+    public void paint(Graphics g, String currentState) {
+        g.setColor(Color.white);
+        g.fillRect(600, 1000, 600, 1000);
         if(currentState.equals("Intro")) {
-            g.setColor(Color.white);
-            g.fillRect(600, 1000, 600, 1000);
             g.drawImage(backgrounds[0], 600, 1000, this);
         }
-        if(currentState.equals("We're playing!") {
+        if(currentState.equals("We're playing!")) {
+            g.drawImage(backgrounds[1], 600, 1000, this);
         }
     }
 }
