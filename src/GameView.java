@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.ImageIcon;
 
 public class GameView extends JFrame {
-    private static final int WINDOW_HEIGHT = 600;
+    private static final int WINDOW_HEIGHT = 700;
     private static final int WINDOW_WIDTH = 1000;
     private Image[] diceImages;
     private Image[] backgrounds;
