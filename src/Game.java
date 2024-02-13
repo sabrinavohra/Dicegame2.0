@@ -2,18 +2,26 @@ import java.util.Scanner;
 public class Game
 {
     private Die d1;
-    private Die d2;
-    private int points;
+    private String player1;
+    private String player2;
+    private int points1 = 0;
+    private int points2 = 0;
     private int numSides;
-    private boolean sixOrNot;
+    private GameView window;
+    private String currentState;
+    private boolean currentPlayer;
 
     public Game()
     {
         d1 = new Die();
-        d2 = new Die(numSides);
-        points = 0;
-        numSides = 0;
-        sixOrNot = true;
+        numSides = 0;;
+        window = new GameView(this);
+        Scanner s = new Scanner(System.in);
+        System.out.println("What is Player 1's name? ");
+        player1 = s.nextLine();
+        System.out.println("What is Player 2's name? ");
+        player2  = s.nextLine();
+        currentPlayer = true;
     }
 
     public void rules()
@@ -26,77 +34,54 @@ public class Game
                 "your guess is wrong, your score resets to \n0. Good luck! :) \n");
     }
 
-    public void basicGame()
-    {
-        while(points < 30)
-        {
-            Scanner input = new Scanner(System.in);
-            System.out.println("What is the lowest number this roll will be? ");
-            //declares user's guess
-            int guess = input.nextInt();
-            invalid(guess);
-            //rolls die
-            int thisRoll = d2.roll(); // CALLS OUTSIDE METHOD
-            System.out.println("You rolled a: " + thisRoll);
-            //i++;
-            //awards points for roll
-            if (sixOrNot == true)
-            {
+    public void basicGame() {
+        Scanner input = new Scanner(System.in);
+        while(points1 < 30 && points2 < 30) {
+            if(currentPlayer == true) {
+                System.out.println("What is the lowest number this roll will be? ");
+                int guess = input.nextInt();
+                invalid(guess);
+                int thisRoll = d1.roll(); // CALLS OUTSIDE METHOD
+                System.out.println("You rolled a: " + thisRoll);
                 if(d1.lessThan(guess,thisRoll) == true)
                 {
-                    points += guess;
+                    points1 += guess;
                 }
                 else
                 {
-                    points = 0;
+                    points1 = 0;
                 }
+                currentPlayer = false;
             }
-            else if (sixOrNot == true)
-            {
-                if(d2.lessThan(guess, thisRoll) == true)
+            else if (currentPlayer == false) {
+                System.out.println("What is the lowest number this roll will be? ");
+                int guess = input.nextInt();
+                invalid(guess);
+                int thisRoll = d1.roll(); // CALLS OUTSIDE METHOD
+                System.out.println("You rolled a: " + thisRoll);
+                if(d1.lessThan(guess,thisRoll) == true)
                 {
-                    points += guess;
+                    points2 += guess;
                 }
                 else
                 {
-                    points = 0;
+                    points2 = 0;
                 }
-            }
-
-            //tells user how many points they have after each round
-            printPoints(points);
-            //tells user they've won!
-            if (points >= 30)
-            {
-                win();
+                currentPlayer = true;
             }
         }
     }
 
-    public void playGame()
-    {
+    public void playGame() {
         Scanner input = new Scanner(System.in);
-
+        currentState = "Intro";
         rules();
-
-        System.out.println("Do you want six sides on your die? Respond true or false.");
-        boolean sixOrNot = input.nextBoolean();
-        if (sixOrNot == true)
-        {
-            numSides = 6;
-            basicGame();
-        }
-        else
-        {
-            System.out.println("How many sides do you want on your die?");
-            numSides = input.nextInt();
-            basicGame();
-        }
+        basicGame();
     }
 
-    public void printPoints(int points)
+    public void printPoints(String player, int points)
     {
-        System.out.println("You have " + points + " points."); //CALLS OUTSIDE METHOD
+        System.out.println(player + " has " + points + " points."); //CALLS OUTSIDE METHOD
     }
 
     public void invalid(int guess)
@@ -126,82 +111,4 @@ public class Game
         Game one = new Game();
         one.playGame();
     }
-    // // Declares scanner for user input
-    // Scanner input = new Scanner(System.in);
-    // //gives user the rules
-    // System.out.println(rules()); // USES METHOD INSIDE DIETESTER CLASS
-    // System.out.println("Do you want six sides on your die? Respond true or false.");
-    // boolean sixOrNot = input.nextBoolean();
-    // if(sixOrNot == true)
-    // {
-    //     Die d1 = new Die();
-    //     int numSides = d1.getSides(); //USES OUTSIDE METHOD
-    //     int points = 0;
-    //     //creates a loop to run program until the user wins the game
-    //     while(points < 30)
-    //     {
-    //         //asks user for input and a guess
-    //         System.out.println("What is the lowest number this roll will be? ");
-    //         //declares user's guess
-    //         int guess = input.nextInt();
-    //         int i = 0;
-    //         //changes user's guess if it is invalid
-    //         System.out.println(invalid(guess, numSides));
-    //         //rolls die
-    //         System.out.println(d1);
-    //         int thisRoll = d1.roll(); // CALLS OUTSIDE METHOD
-    //         i++;
-    //         System.out.println(thisRoll);
-    //         //awards points for roll
-    //         if(d1.lessThan(guess, thisRoll) == true)
-    //         {
-    //             points += guess;
-    //         }
-    //         else
-    //         {
-    //             points = 0;
-    //         }
-    //         //tells user how many points they have after each round
-    //         System.out.println(printPoints(points));
-    //         //tells user they've won!
-    //         if (points >=30)
-    //         {
-    //             System.out.println(win());
-    //         }
-    //     }
-    // }
-    // else
-    // {
-    //     System.out.println("How many sides do you want on your die?");
-    //     int numSides = input.nextInt();
-    //     Die d2 = new Die(numOfSides);
-    //     int points = 0;
-    //     while(points < 30)
-    //     {
-    //         System.out.println("What is the lowest number this roll will be? ");
-    //         //declares user's guess
-    //         int guess = input.nextInt();
-    //         int i = 0;
-    //         System.out.println (invalid(guess, numOfSides));
-    //         //rolls die
-    //         int thisRoll = d2.roll(); // CALLS OUTSIDE METHOD
-    //         System.out.println("You rolled a: " + thisRoll);
-    //         i++;
-    //         //awards points for roll
-    //         if(d2.lessThan(guess, thisRoll) == true)
-    //         {
-    //             points += guess;
-    //         }
-    //         else
-    //         {
-    //             points = 0;
-    //         }
-    //         //tells user how many points they have after each round
-    //         System.out.println(printPoints(points));
-    //         //tells user they've won!
-    //         if (points >= 30)
-    //         {
-    //             System.out.println(win());
-    //         }
-    //     }
 }

@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.ImageIcon;
 
 public class GameView extends JFrame {
-    private static final int WINDOW_HEIGHT = 600;
+    private static final int WINDOW_HEIGHT = 800;
     private static final int WINDOW_WIDTH = 1000;
     private Image[] diceImages;
     private Image[] backgrounds;
@@ -32,8 +32,10 @@ public class GameView extends JFrame {
         if(currentState.equals("Intro")) {
             g.drawImage(backgrounds[0], 600, 1000, this);
         }
-        if(currentState.equals("We're playing!")) {
+        else if(currentState.equals("We're playing!")) {
             g.drawImage(backgrounds[1], 600, 1000, this);
+        }
+        else if(currentState.equals("It's over")) {
         }
     }
 }
