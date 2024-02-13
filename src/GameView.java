@@ -10,6 +10,7 @@ public class GameView extends JFrame {
     private Game theGame;
 
     public GameView(Game theGame) {
+        this.theGame = theGame;
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setTitle("Dice Game!");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,16 +27,18 @@ public class GameView extends JFrame {
         diceImages[5] = new ImageIcon("Resources/Dice6.png").getImage();
     }
 
-    public void paint(Graphics g, String currentState) {
+    public void paint(Graphics g) {
+        String currentState = theGame.getCurrentState();
         g.setColor(Color.white);
-        g.fillRect(600, 1000, 600, 1000);
+        g.fillRect(0, 0, 1000, 800);
+        g.drawString("Hi", 500, 500);
         if(currentState.equals("Intro")) {
-            g.drawImage(backgrounds[0], 600, 1000, this);
+            g.drawImage(backgrounds[0], 0, 0, this);
         }
         else if(currentState.equals("We're playing!")) {
             g.drawImage(backgrounds[1], 600, 1000, this);
         }
-        else if(currentState.equals("It's over")) {
-        }
+//        else if(currentState.equals("It's over")) {
+//        }
     }
 }

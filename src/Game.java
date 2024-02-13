@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.awt.Graphics;
 public class Game
 {
     private final int NUM_SIDES = 6;
@@ -8,6 +9,8 @@ public class Game
     private String player1;
     private String player2;
     private boolean currentPlayer;
+    private GameView window;
+    private String currentState;
 
     public Game()
     {
@@ -15,9 +18,13 @@ public class Game
         points1 = 0;
         points2 = 0;
         currentPlayer = true;
+        currentState = "Intro";
+        window = new GameView(this);
     }
 
     public void rules() {
+        currentState = "Intro";
+        window.repaint();
         System.out.println("Here's how you play: \n");
         System.out.println("The computer will ask you to guess a number on a die with the\n" +
                 "number of sides of your choosing. Then, it will roll the die. \nIf the " +
@@ -48,13 +55,13 @@ public class Game
                 printPoints(points1);
                 currentPlayer = false;
             }
-            else if(currentPlayer == false) {
+            else if(!currentPlayer) {
                 System.out.println("Hi " + player2 + " What is the lowest number this roll will be? ");
                 int guess = input.nextInt();
                 invalid(guess);
                 int thisRoll = d1.roll(); // CALLS OUTSIDE METHOD
                 System.out.println("You rolled a: " + thisRoll);
-                if (d1.lessThan(guess, thisRoll) == true) {
+                if (d1.lessThan(guess, thisRoll)) {
                     points2 += guess;
                 } else {
                     points2 = 0;
@@ -67,7 +74,9 @@ public class Game
 
     public void playGame() {
         rules();
+        window.repaint();
         basicGame();
+        window.repaint();
     }
 
     public void printPoints(int points)
@@ -89,6 +98,10 @@ public class Game
         {
             System.out.println("Your guess is a " + guess);
         }
+    }
+
+    public String getCurrentState() {
+        return this.currentState;
     }
 
     public void win()
