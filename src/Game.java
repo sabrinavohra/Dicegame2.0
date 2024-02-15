@@ -55,23 +55,27 @@ public class Game
                     points1 = 0;
                 }
                 printPoints(points1);
+                window.repaint();
                 currentPlayer = false;
             }
             else if(!currentPlayer) {
                 System.out.println("Hi " + player2 + " What is the lowest number this roll will be? ");
                 int guess = input.nextInt();
                 invalid(guess);
-                int thisRoll = d1.roll(); // CALLS OUTSIDE METHOD
-                System.out.println("You rolled a: " + thisRoll);
-                if (d1.lessThan(guess, thisRoll)) {
+                currentRoll = d1.roll(); // CALLS OUTSIDE METHOD
+                System.out.println("You rolled a: " + currentRoll);
+                if (d1.lessThan(guess, currentRoll)) {
                     points2 += guess;
                 } else {
                     points2 = 0;
                 }
                 printPoints(points2);
+                window.repaint();
                 currentPlayer = true;
             }
         }
+        currentState = "It's over";
+        window.repaint();
     }
 
     public void playGame() {
@@ -84,6 +88,13 @@ public class Game
     public void printPoints(int points)
     {
         System.out.println("You have " + points + " points."); //CALLS OUTSIDE METHOD
+    }
+
+    public int getPoints() {
+        if (currentPlayer) {
+            return points1;
+        }
+        return points2;
     }
 
     public void invalid(int guess) {
@@ -108,6 +119,10 @@ public class Game
 
     public int getCurrentRoll() {
         return this.currentRoll;
+    }
+
+    public boolean getCurrentPlayer() {
+        return this.currentPlayer;
     }
 
     public void win()

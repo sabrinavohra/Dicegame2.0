@@ -37,8 +37,15 @@ public class GameView extends JFrame {
         }
         if(currentState.equals("We're playing!")) {
             g.drawImage(backgrounds[1], 0, 0, 1000, 800,this);
+            String printPoints = "" + theGame.getPoints();
+            g.drawString(printPoints, 800, 10);
             if(theGame.getCurrentRoll() == 1) {
+                // Print image of screen
             }
+            g.drawString(printPoints, 800, 10);
+//            if(theGame.getCurrentRoll() == 1) {
+//                theGame.printPoints(theGame.points1);
+//            }
         }
         else if(currentState.equals("It's over")) {
             g.drawString("THANKS FOR PLAYING!", 500, 400);
