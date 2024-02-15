@@ -40,6 +40,7 @@ public class GameView extends JFrame {
             String printPoints = "" + theGame.getPoints();
             g.drawString(printPoints, 800, 10);
             if(theGame.getCurrentRoll() == 1) {
+                g.setColor(Color.white);
                 // Print image of screen
             }
             g.drawString(printPoints, 800, 10);
