@@ -11,6 +11,7 @@ public class Game
     private boolean currentPlayer;
     private GameView window;
     private String currentState;
+    private int currentRoll;
 
     public Game()
     {
@@ -40,14 +41,15 @@ public class Game
 
     public void basicGame() {
         while (points1 < 30 && points2 < 30) {
+            currentState = "We're playing!";
             Scanner input = new Scanner(System.in);
             if(currentPlayer == true) {
                 System.out.println("Hi " + player1 + "! What is the lowest number this roll will be? ");
                 int guess = input.nextInt();
                 invalid(guess);
-                int thisRoll = d1.roll(); // CALLS OUTSIDE METHOD
-                System.out.println("You rolled a: " + thisRoll);
-                if (d1.lessThan(guess, thisRoll) == true) {
+                currentRoll = d1.roll(); // CALLS OUTSIDE METHOD
+                System.out.println("You rolled a: " + currentRoll);
+                if (d1.lessThan(guess, currentRoll) == true) {
                     points1 += guess;
                 } else {
                     points1 = 0;
@@ -102,6 +104,10 @@ public class Game
 
     public String getCurrentState() {
         return this.currentState;
+    }
+
+    public int getCurrentRoll() {
+        return this.currentRoll;
     }
 
     public void win()
