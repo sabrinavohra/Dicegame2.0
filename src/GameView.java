@@ -3,9 +3,10 @@ import java.awt.*;
 import javax.swing.ImageIcon;
 
 public class GameView extends JFrame {
-    private static final int WINDOW_HEIGHT = 800;
     private static final int WINDOW_WIDTH = 1000;
+    private static final int WINDOW_HEIGHT = 800;
     private Image[] diceImages;
+    private Image[] diceBackgrounds;
     private Image[] backgrounds;
     private Game theGame;
 
@@ -21,6 +22,13 @@ public class GameView extends JFrame {
         diceImages[3] = new ImageIcon("src/Resources/Dice4.png").getImage();
         diceImages[4] = new ImageIcon("src/Resources/Dice5.png").getImage();
         diceImages[5] = new ImageIcon("src/Resources/Dice6.png").getImage();
+        diceBackgrounds = new Image[6];
+        diceBackgrounds[0] = new ImageIcon("src/Resources/background1.png").getImage();
+        diceBackgrounds[1] = new ImageIcon("src/Resources/background2.png").getImage();
+        diceBackgrounds[2] = new ImageIcon("src/Resources/background3.png").getImage();
+        diceBackgrounds[3] = new ImageIcon("src/Resources/background4.png").getImage();
+        diceBackgrounds[4] = new ImageIcon("src/Resources/background5.png").getImage();
+        diceBackgrounds[5] = new ImageIcon("src/Resources/background6.png").getImage();
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setTitle("Dice Game!");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,32 +41,32 @@ public class GameView extends JFrame {
         g.fillRect(0, 0, 1000, 800);
         if(currentState.equals("Intro")) {
             g.setColor(Color.black);
-            g.drawImage(backgrounds[0], 0, 0, 1000, 800,this);
+            g.drawImage(backgrounds[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,this);
         }
         if(currentState.equals("We're playing!")) {
-            g.drawImage(backgrounds[1], 0, 0, 1000, 800,this);
+            g.drawImage(backgrounds[1], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,this);
             String printPoints = "" + theGame.getPoints();
-            g.setColor(Color.black);
-            g.drawString(printPoints, 800, 10);
+            g.setColor(Color.red);
+            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 900, 50);
             if(theGame.getCurrentRoll() == 1) {
-                g.drawImage(diceImages[0], 0, 0, 500, 500, this);
+                g.drawImage(diceBackgrounds[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
             else if(theGame.getCurrentRoll() == 2) {
-                g.drawImage(diceImages[1], 0, 0, 500, 500, this);
+                g.drawImage(diceBackgrounds[1], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
             else if(theGame.getCurrentRoll() == 3) {
-                g.drawImage(diceImages[2], 0, 0, 500, 500, this);
+                g.drawImage(diceBackgrounds[2], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
             else if(theGame.getCurrentRoll() == 4) {
-                g.drawImage(diceImages[3], 0, 0, 500, 500, this);
+                g.drawImage(diceBackgrounds[3], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
             else if(theGame.getCurrentRoll() == 5) {
-                g.drawImage(diceImages[4], 0, 0, 500, 500, this);
+                g.drawImage(diceBackgrounds[4], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
             else if(theGame.getCurrentRoll() == 6) {
-                g.drawImage(diceImages[5], 0, 0, 500, 500, this);
+                g.drawImage(diceBackgrounds[5], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
-            g.drawString(printPoints, 800, 10);
+            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 900, 50);
 //            if(theGame.getCurrentRoll() == 1) {
 //                theGame.printPoints(theGame.points1);
 //            }

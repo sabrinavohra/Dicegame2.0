@@ -91,7 +91,7 @@ public class Game
     }
 
     public int getPoints() {
-        if (currentPlayer) {
+        if(currentPlayer) {
             return points1;
         }
         return points2;
