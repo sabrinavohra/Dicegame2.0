@@ -38,10 +38,25 @@ public class GameView extends JFrame {
         if(currentState.equals("We're playing!")) {
             g.drawImage(backgrounds[1], 0, 0, 1000, 800,this);
             String printPoints = "" + theGame.getPoints();
+            g.setColor(Color.black);
             g.drawString(printPoints, 800, 10);
             if(theGame.getCurrentRoll() == 1) {
-                g.setColor(Color.white);
-                // Print image of screen
+                g.drawImage(diceImages[0], 0, 0, 500, 500, this);
+            }
+            else if(theGame.getCurrentRoll() == 2) {
+                g.drawImage(diceImages[1], 0, 0, 500, 500, this);
+            }
+            else if(theGame.getCurrentRoll() == 3) {
+                g.drawImage(diceImages[2], 0, 0, 500, 500, this);
+            }
+            else if(theGame.getCurrentRoll() == 4) {
+                g.drawImage(diceImages[3], 0, 0, 500, 500, this);
+            }
+            else if(theGame.getCurrentRoll() == 5) {
+                g.drawImage(diceImages[4], 0, 0, 500, 500, this);
+            }
+            else if(theGame.getCurrentRoll() == 6) {
+                g.drawImage(diceImages[5], 0, 0, 500, 500, this);
             }
             g.drawString(printPoints, 800, 10);
 //            if(theGame.getCurrentRoll() == 1) {
