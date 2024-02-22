@@ -3,8 +3,8 @@ import java.awt.*;
 import javax.swing.ImageIcon;
 
 public class GameView extends JFrame {
-    private static final int WINDOW_WIDTH = 1000;
-    private static final int WINDOW_HEIGHT = 800;
+    private static final int WINDOW_WIDTH = 1024;
+    private static final int WINDOW_HEIGHT = 768;
     private Image[] diceImages;
     private Image[] diceBackgrounds;
     private Image[] backgrounds;
@@ -47,7 +47,9 @@ public class GameView extends JFrame {
             g.drawImage(backgrounds[1], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,this);
             String printPoints = "" + theGame.getPoints();
             g.setColor(Color.red);
-            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 900, 50);
+            Font newFont = new Font("TimesRoman Bold", Font.BOLD, 25);
+            g.setFont(newFont);
+            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 925, 60);
             if(theGame.getCurrentRoll() == 1) {
                 g.drawImage(diceBackgrounds[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
@@ -66,7 +68,7 @@ public class GameView extends JFrame {
             else if(theGame.getCurrentRoll() == 6) {
                 g.drawImage(diceBackgrounds[5], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
-            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 900, 50);
+            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 925, 60);
 //            if(theGame.getCurrentRoll() == 1) {
 //                theGame.printPoints(theGame.points1);
 //            }
