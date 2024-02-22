@@ -49,7 +49,7 @@ public class GameView extends JFrame {
             g.setColor(Color.red);
             Font newFont = new Font("TimesRoman Bold", Font.BOLD, 25);
             g.setFont(newFont);
-            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 925, 60);
+            g.drawString(printPoints, 925, 60);
             if(theGame.getCurrentRoll() == 1) {
                 g.drawImage(diceBackgrounds[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
@@ -68,13 +68,18 @@ public class GameView extends JFrame {
             else if(theGame.getCurrentRoll() == 6) {
                 g.drawImage(diceBackgrounds[5], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
-            g.drawString(printPoints + "( " + theGame.getCurrentPlayer() + ") ", 925, 60);
-//            if(theGame.getCurrentRoll() == 1) {
-//                theGame.printPoints(theGame.points1);
-//            }
+            g.drawString(printPoints, 925, 60);
         }
         else if(currentState.equals("It's over")) {
-            g.drawString("THANKS FOR PLAYING!", 500, 400);
+            g.setColor(Color.green);
+            g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            g.setColor(Color.black);
+            if(theGame.getTheWinner() == true) {
+                g.drawString(theGame.getPlayer1() + "WINS!", 500, 400);
+            }
+            else {
+                g.drawString(theGame.getPlayer2() + "WINS!", 500, 400);
+            }
         }
     }
 }

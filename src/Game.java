@@ -11,6 +11,7 @@ public class Game
     private boolean currentPlayer;
     private GameView window;
     private String currentState;
+    private boolean theWinner;
     private int currentRoll;
 
     public Game()
@@ -75,6 +76,10 @@ public class Game
             }
         }
         currentState = "It's over";
+        if(points1 == 30) {
+            theWinner = true;
+        }
+        theWinner = false;
         window.repaint();
     }
 
@@ -92,9 +97,9 @@ public class Game
 
     public int getPoints() {
         if(currentPlayer) {
-            return points1;
+            return points2;
         }
-        return points2;
+        return points1;
     }
 
     public void invalid(int guess) {
@@ -123,6 +128,18 @@ public class Game
 
     public boolean getCurrentPlayer() {
         return this.currentPlayer;
+    }
+
+    public boolean getTheWinner() {
+        return theWinner;
+    }
+
+    public String getPlayer1() {
+        return player1;
+    }
+
+    public String getPlayer2() {
+        return player2;
     }
 
     public void win()
