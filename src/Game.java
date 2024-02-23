@@ -1,45 +1,65 @@
+// Sabrina Vohra
 import java.util.Scanner;
-import java.awt.Graphics;
+// Game class
 public class Game
 {
+    // Initializes instance variables for Game class
+    // Initializes number of sides on all die
     private final int NUM_SIDES = 6;
+    // Initializes Die object
     private Die d1;
-    private int points1;
-    private int points2;
+    // Initializes points for first user
+    private int points1 = 0;
+    // Initializes points for second user
+    private int points2 = 0;
+    // Initializes name for first user
     private String player1;
+    // Initializes name for second user
     private String player2;
+    // Initializes boolean to know which player is currently playing
     private boolean currentPlayer;
+    // Initializes front end object
     private GameView window;
+    // Initializes String to know which part of the game is being played
     private String currentState;
+    // Initializes boolean to recognize which player won the game
     private boolean theWinner;
+    // Initializes number that was rolled
     private int currentRoll;
 
+    // Constructor for Game object
     public Game()
     {
+        // Initializes dice object
         d1 = new Die();
-        points1 = 0;
-        points2 = 0;
+        // Sets currentPlayer to player1
         currentPlayer = true;
-        currentState = "Intro";
+        // Sets GameView object
         window = new GameView(this);
     }
 
+    // Method to print the rules
     public void rules() {
+        // Sets currentState to the introductory state
         currentState = "Intro";
+        // Repaints window
         window.repaint();
+        // Prints rules
         System.out.println("Here's how you play: \n");
-        System.out.println("The computer will ask you to guess a number on a die with the\n" +
-                "number of sides of your choosing. Then, it will roll the die. \nIf the " +
-                "number you guessed is greater than the roll, you win \nthe number of " +
-                "points of your guess. The goal is to get to \n30 points, but if " +
-                "your guess is wrong, your score resets to \n0. Good luck! :) \n");
+        System.out.println("In this game, your goal is to win 30 points before your opponent. You will be prompted to " +
+                "guess a number before you roll your die. The guess is the lowest number you think the roll will be. " +
+                " If the number you guessed is greater than the roll, you win the number of points of your guess. If " +
+                "the roll is less than your guess, your score resets to 0 points. Good luck :)!");
+        // Creates Scanner object for input
         Scanner input = new Scanner(System.in);
+        // Asks for users' names
         System.out.println("What's Player 1's name? ");
         player1 = input.nextLine();
         System.out.println("What's Player 2's name?");
         player2 = input.nextLine();
     }
 
+    // Method for the Game
     public void basicGame() {
         while (points1 < 30 && points2 < 30) {
             currentState = "We're playing!";

@@ -1,3 +1,4 @@
+// Sabrina Vohra
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.ImageIcon;
@@ -13,7 +14,7 @@ public class GameView extends JFrame {
     public GameView(Game theGame) {
         this.theGame = theGame;
         backgrounds = new Image[2];
-        backgrounds[0] = new ImageIcon("src/Resources/Intro_SS.png").getImage();
+        backgrounds[0] = new ImageIcon("src/Resources/introBackground.png").getImage();
         backgrounds[1] = new ImageIcon("src/Resources/playingBackground.png").getImage();
         diceImages = new Image[6];
         diceImages[0] = new ImageIcon("src/Resources/Dice1.png").getImage();
