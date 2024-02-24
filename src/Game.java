@@ -117,8 +117,10 @@ public class Game
         // Saves which user won
         if(points1 == 30) {
             theWinner = true;
+            System.out.println(player1 + " won!");
         }
         theWinner = false;
+        System.out.println(player2 + " won!");
         // Repaints window for ending state
         window.repaint();
     }

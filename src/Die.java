@@ -1,3 +1,4 @@
+// Sabrina Vohra
 public class Die
 {
     /** Instance Variables **/

@@ -46,6 +46,9 @@ public class GameView extends JFrame {
     public void paint(Graphics g) {
         // Uses back end's info to recognize which screen to print
         String currentState = theGame.getCurrentState();
+        // Creates new fonts to use
+        Font a = new Font("TimesRoman Bold", Font.BOLD, 25);
+        Font b = new Font("TimesRoman Bold", Font.BOLD, 50);
         // Prints introductory screen
         if(currentState.equals("Intro")) {
             // Prints introductory background image
@@ -60,8 +63,7 @@ public class GameView extends JFrame {
             // Sets color for points
             g.setColor(Color.black);
             // Creates new font to use for point values
-            Font newFont = new Font("TimesRoman Bold", Font.BOLD, 25);
-            g.setFont(newFont);
+            g.setFont(a);
             // Prints points for given user
             g.drawString(printPoints, 925, 60);
             // Prints corresponding screen for die's roll
@@ -93,15 +95,17 @@ public class GameView extends JFrame {
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             // Sets color to black to print winning message
             g.setColor(Color.black);
+            // Sets font size to be large
+            g.setFont(b);
             // Sets coordinate values to print winning message in middle (ish) of screen
             int middleX = 500;
             int middleY = 400;
             // Prints winner's name and message
             if(theGame.getTheWinner()) {
-                g.drawString(theGame.getPlayer1() + "WINS!", middleX, middleY);
+                g.drawString(theGame.getPlayer1() + " WINS!", middleX, middleY);
             }
             else {
-                g.drawString(theGame.getPlayer2() + "WINS!", middleX, middleY);
+                g.drawString(theGame.getPlayer2() + " WINS!", middleX, middleY);
             }
         }
     }
