@@ -3,26 +3,28 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.ImageIcon;
 
+// Creates front-end class for Game
 public class GameView extends JFrame {
+    // Initializes instance variables
+    // Initializes width and height of window
     private static final int WINDOW_WIDTH = 1024;
     private static final int WINDOW_HEIGHT = 768;
-    private Image[] diceImages;
+    // Creates an Array of Images for the background screens when rolling
     private Image[] diceBackgrounds;
+    // Creates an Array of Images to store the intro, playing, and end screen backgrounds
     private Image[] backgrounds;
+    // Creates instance of the Game to share information between back end and front end
     private Game theGame;
 
+    // Constructor for GameView class
     public GameView(Game theGame) {
+        // Sets instance variable to the current Game being played
         this.theGame = theGame;
+        // Sets number of and adds backgrounds to Array
         backgrounds = new Image[2];
         backgrounds[0] = new ImageIcon("src/Resources/introBackground.png").getImage();
         backgrounds[1] = new ImageIcon("src/Resources/playingBackground.png").getImage();
-        diceImages = new Image[6];
-        diceImages[0] = new ImageIcon("src/Resources/Dice1.png").getImage();
-        diceImages[1] = new ImageIcon("src/Resources/Dice2.png").getImage();
-        diceImages[2] = new ImageIcon("src/Resources/Dice3.png").getImage();
-        diceImages[3] = new ImageIcon("src/Resources/Dice4.png").getImage();
-        diceImages[4] = new ImageIcon("src/Resources/Dice5.png").getImage();
-        diceImages[5] = new ImageIcon("src/Resources/Dice6.png").getImage();
+        // Sets number of and adds dice backgrounds to Array
         diceBackgrounds = new Image[6];
         diceBackgrounds[0] = new ImageIcon("src/Resources/background1.png").getImage();
         diceBackgrounds[1] = new ImageIcon("src/Resources/background2.png").getImage();
@@ -30,12 +32,17 @@ public class GameView extends JFrame {
         diceBackgrounds[3] = new ImageIcon("src/Resources/background4.png").getImage();
         diceBackgrounds[4] = new ImageIcon("src/Resources/background5.png").getImage();
         diceBackgrounds[5] = new ImageIcon("src/Resources/background6.png").getImage();
+        // Sets size of window
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        // Sets title of window
         this.setTitle("Dice Game!");
+        // Makes Game exit when window is closed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Allows user to see screen
         this.setVisible(true);
     }
 
+    // Paints screen
     public void paint(Graphics g) {
         String currentState = theGame.getCurrentState();
         g.setColor(Color.lightGray);
