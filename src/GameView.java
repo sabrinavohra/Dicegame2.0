@@ -44,20 +44,27 @@ public class GameView extends JFrame {
 
     // Paints screen
     public void paint(Graphics g) {
+        // Uses back end's info to recognize which screen to print
         String currentState = theGame.getCurrentState();
-        g.setColor(Color.lightGray);
-        g.fillRect(0, 0, 1000, 800);
+        // Prints introductory screen
         if(currentState.equals("Intro")) {
-            g.setColor(Color.black);
+            // Prints introductory background image
             g.drawImage(backgrounds[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,this);
         }
+        // Prints playing screen
         if(currentState.equals("We're playing!")) {
+            // Prints background image
             g.drawImage(backgrounds[1], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,this);
+            // Prints user's points
             String printPoints = "" + theGame.getPoints();
-            g.setColor(Color.red);
+            // Sets color for points
+            g.setColor(Color.black);
+            // Creates new font to use for point values
             Font newFont = new Font("TimesRoman Bold", Font.BOLD, 25);
             g.setFont(newFont);
+            // Prints points for given user
             g.drawString(printPoints, 925, 60);
+            // Prints corresponding screen for die's roll
             if(theGame.getCurrentRoll() == 1) {
                 g.drawImage(diceBackgrounds[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
@@ -76,17 +83,25 @@ public class GameView extends JFrame {
             else if(theGame.getCurrentRoll() == 6) {
                 g.drawImage(diceBackgrounds[5], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
             }
+            // Prints points
             g.drawString(printPoints, 925, 60);
         }
+        // Prints ending screen
         else if(currentState.equals("It's over")) {
+            // Changes window's background to green
             g.setColor(Color.green);
             g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            // Sets color to black to print winning message
             g.setColor(Color.black);
-            if(theGame.getTheWinner() == true) {
-                g.drawString(theGame.getPlayer1() + "WINS!", 500, 400);
+            // Sets coordinate values to print winning message in middle (ish) of screen
+            int middleX = 500;
+            int middleY = 400;
+            // Prints winner's name and message
+            if(theGame.getTheWinner()) {
+                g.drawString(theGame.getPlayer1() + "WINS!", middleX, middleY);
             }
             else {
-                g.drawString(theGame.getPlayer2() + "WINS!", 500, 400);
+                g.drawString(theGame.getPlayer2() + "WINS!", middleX, middleY);
             }
         }
     }
