@@ -32,6 +32,8 @@ public class Game
     {
         // Initializes dice object
         d1 = new Die();
+        // Sets currentState to introductory state
+        currentState = "Intro";
         // Sets currentPlayer to player1
         currentPlayer = true;
         // Sets GameView object
@@ -40,16 +42,14 @@ public class Game
 
     // Method to print the rules
     public void rules() {
-        // Sets currentState to the introductory state
-        currentState = "Intro";
         // Repaints window
         window.repaint();
         // Prints rules
         System.out.println("Here's how you play: \n");
         System.out.println("In this game, your goal is to win 30 points before your opponent. You will be prompted to " +
-                "guess a number before you roll your die. The guess is the lowest number you think the roll will be. " +
-                " If the number you guessed is greater than the roll, you win the number of points of your guess. If " +
-                "the roll is less than your guess, your score resets to 0 points. Good luck :)!");
+                "\nguess a number before you roll your die. The guess is the lowest number you think the roll will be. " +
+                " \nIf the number you guessed is greater than the roll, you win the number of points of your guess. If " +
+                "\nthe roll is less than your guess, your score resets to 0 points. Good luck :)!");
         // Creates Scanner object for input
         Scanner input = new Scanner(System.in);
         // Asks for users' names
