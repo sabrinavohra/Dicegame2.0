@@ -119,8 +119,10 @@ public class Game
             theWinner = true;
             System.out.println(player1 + " won!");
         }
-        theWinner = false;
-        System.out.println(player2 + " won!");
+        else if(points2 == 30) {
+            theWinner = false;
+            System.out.println(player2 + " won!");
+        }
         // Repaints window for ending state
         window.repaint();
     }
