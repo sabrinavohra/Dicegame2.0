@@ -87,6 +87,11 @@ public class GameView extends JFrame {
             }
             // Prints points
             g.drawString(printPoints, 925, 60);
+            currentState = "Home Screen";
+        }
+        else if(currentState.equals("Home Screen")) {
+            g.drawImage(backgrounds[1], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,this);
+            currentState = "We're playing!";
         }
         // Prints ending screen
         else if(currentState.equals("It's over")) {
